@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RapidBet Live (Regenerated)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>RapidBet Live</h1>
+        <p class="muted">Complete demo app UI</p>
+      </div>
+      <button id="gmailLoginBtn" class="primary">Login with Gmail</button>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Registration & OTP</h2>
+        <label>Gmail Address
+          <input id="email" type="email" placeholder="name@gmail.com" />
+        </label>
+        <div class="row">
+          <button id="sendOtpBtn">Send OTP</button>
+          <span id="otpStatus" class="muted">OTP not sent</span>
+        </div>
+        <label>OTP
+          <input id="otpInput" type="text" maxlength="6" placeholder="6-digit OTP" />
+        </label>
+        <button id="verifyOtpBtn">Verify OTP</button>
+        <p id="authMessage" class="muted"></p>
+      </section>
+
+      <section class="card">
+        <h2>Wallet</h2>
+        <p>Balance: ₹<strong id="balance">0.00</strong></p>
+        <div class="wallet-grid">
+          <div>
+            <h3>Deposit (Min ₹100)</h3>
+            <p>UPI ID: <strong>srinivasraochintada9921@ybl</strong></p>
+            <img id="qr" alt="UPI QR code" src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=upi://pay?pa=srinivasraochintada9921@ybl&pn=CHINTADA%20ARUNA%20KUMARI&cu=INR" />
+            <label>Amount
+              <input id="depositAmount" type="number" min="100" placeholder="100" />
+            </label>
+            <label>UTR ID
+              <input id="depositUtr" type="text" placeholder="UTR123..." />
+            </label>
+            <label>Payment Screenshot
+              <input id="depositScreenshot" type="file" accept="image/*" />
+            </label>
+            <label>Payment Date & Time
+              <input id="depositDateTime" type="datetime-local" />
+            </label>
+            <p class="small muted">Current verification time: <span id="depositNow"></span></p>
+            <button id="depositBtn">Submit Deposit Proof</button>
+            <p class="small muted">Strict rule: screenshot filename must contain UTR and YYYYMMDDHHMM timestamp.</p>
+          </div>
+
+          <div>
+            <h3>Withdraw (Min ₹100)</h3>
+            <label>Amount
+              <input id="withdrawAmount" type="number" min="100" placeholder="100" />
+            </label>
+            <label>UPI ID
+              <input id="withdrawUpi" type="text" placeholder="name@bank" />
+            </label>
+            <button id="withdrawBtn">Request Withdraw</button>
+            <p class="small muted">Transfer to UPI is simulated in 1 minute.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Live Cricket Betting</h2>
+        <p class="muted">Minimum cricket bet: ₹100</p>
+        <div class="row">
+          <button id="refreshAiBtn">AI Refresh Live Matches</button>
+          <span id="aiStatus" class="muted">AI waiting...</span>
+        </div>
+        <div id="liveMatches" class="stack"></div>
+
+        <h3>Over-to-Over Fancy</h3>
+        <div id="fancyOdds" class="stack"></div>
+
+        <h3>AI Live Scorecard</h3>
+        <div id="liveScorecard" class="stack"></div>
+      </section>
+
+      <section class="card">
+        <h2>Games</h2>
+        <h3>Aviator</h3>
+        <p class="muted">Minimum bet: ₹10</p>
+        <label>Bet Amount
+          <input id="aviatorBet" type="number" min="10" value="10" />
+        </label>
+        <button id="placeAviatorBet">Place Aviator Bet</button>
+      </section>
+
+      <section class="card">
+        <h2>VIP Profile</h2>
+        <p>Level: <strong id="vipLevel">Bronze</strong></p>
+        <p>Total Deposits: ₹<strong id="totalDeposits">0</strong></p>
+        <p>Total Bets: ₹<strong id="totalBets">0</strong></p>
+      </section>
+
+      <section class="card wide">
+        <h2>Transaction Statement</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="statementBody"></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>Support</h2>
+        <p>WhatsApp: <a href="https://wa.me/919492451769" target="_blank" rel="noreferrer">+91 9492451769</a></p>
+      </section>
+    </main>
+
+    <template id="matchTemplate">
+      <div class="item">
+        <div>
+          <strong class="teams"></strong>
+          <p class="score muted"></p>
+        </div>
+        <div class="row compact">
+          <button class="bet-btn">Back</button>
+          <span class="odds"></span>
+          <button class="bet-btn lay">Lay</button>
+        </div>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
